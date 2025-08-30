@@ -4,7 +4,9 @@
              x:Class="MauiAppCarrinhoDeCompras.Views.NovoProduto"
              Title="Novo Produto">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Salvar" Clicked="ToolbarItem_Salvar_Clicked"/>
+        <ToolbarItem 
+            x:Name="btn_salvar"
+            Text="Salvar" Clicked="btn_salvar_Clicked"/>
     </ContentPage.ToolbarItems>
     
     <VerticalStackLayout 
