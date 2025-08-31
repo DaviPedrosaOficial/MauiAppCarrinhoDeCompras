@@ -6,14 +6,18 @@ namespace MauiAppCarrinhoDeCompras.Views;
 
 public partial class ListaProduto : ContentPage
 {
-    ObservableCollection<Produto> lista = new ObservableCollection<Produto>();
-	public ListaProduto()
+    ObservableCollection<Produto> lista = new ObservableCollection<Produto>();      // Cria uma coleção observável para armazenar os produtos e atualizar a interface automaticamente
+
+    // <----------------------- Construtor da classe ------------------------->
+    public ListaProduto()
 	{
 		InitializeComponent();
 
         lst_produtos.ItemsSource = lista;
 	}
 
+    // <----------------------- Evento OnAppearing ------------------------->
+    // Evento disparado quando a página aparece na tela, fazendo a carga inicial dos produtos através do banco de dados armazenado em nosso App
     protected async override void OnAppearing()
     {
         List<Produto> lista_temporaria = await App.Db.GetAll();
@@ -21,15 +25,16 @@ public partial class ListaProduto : ContentPage
         lista_temporaria.ForEach(i => lista.Add(i));
     }
 
+    // <----------------------- Eventos de clique ------------------------->
     private void ToolbarItem_Somar_Clicked(object sender, EventArgs e)
     {
         try
         {
-            double soma = lista.Sum(i => i.Total);
+            double soma = lista.Sum(i => i.Total);                      // Calcula a soma total dos produtos na lista
 
-            string msg = $"O total atual é {soma:C}";
+            string msg = $"O total atual é {soma:C}";                   // Formata a mensagem com o valor total em formato de moeda
 
-            DisplayAlert("TOTAL", msg, "Ok");
+            DisplayAlert("TOTAL", msg, "Ok");                           // Exibe um alerta com o total calculado
 
         }
         catch (Exception ex)
@@ -52,13 +57,13 @@ public partial class ListaProduto : ContentPage
 
     private async void txt_search_TextChanged(object sender, TextChangedEventArgs e)
     {
-        string digitado = e.NewTextValue;
+        string digitado = e.NewTextValue;                                  // Obtem o texto digitado no campo de busca
 
-        lista.Clear();
+        lista.Clear();                                                     // Limpa a lista atual para exibir os resultados da busca
 
-        List<Produto> lista_temp = await App.Db.Search(digitado);
+        List<Produto> lista_temp = await App.Db.Search(digitado);          // Realiza a busca no banco de dados com o texto digitado
 
-        lista_temp.ForEach(i => lista.Add(i));
+        lista_temp.ForEach(i => lista.Add(i));                             // Adiciona os produtos encontrados na lista visível
     }
 
     private void MenuItem_Remover_Clicked(object sender, EventArgs e)

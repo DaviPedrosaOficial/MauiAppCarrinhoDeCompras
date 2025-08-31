@@ -21,7 +21,7 @@ namespace MauiAppCarrinhoDeCompras.Helpers
 
         // <------------------- Métodos CRUD ------------------->
 
-        // Métodos são tarefas assíncronas, que permitem que a tarefas sejam executadas em segundo plano de nosso aplicativo, enquanto a nossa interface continua responsiva.
+        // Métodos utilizam de tarefas assíncronas, que permitem que a mesmas sejam executadas em segundo plano de nosso aplicativo, enquanto a nossa interface continua responsiva.
 
         public Task<int> Insert(Produto produto) // O insert utiliza int, pois o retorno é o Id do produto inserido
         {
