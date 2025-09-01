@@ -22,9 +22,18 @@ public partial class ListaProduto : ContentPage
     // Evento disparado quando a página aparece na tela, fazendo a carga inicial dos produtos através do banco de dados armazenado em nosso App
     protected async override void OnAppearing()
     {
-        List<Produto> lista_temporaria = await App.Db.GetAll();
+        try 
+        {
+            lista.Clear();                                              // Limpa a lista para evitar duplicidade de itens ao retornar para a página
 
-        lista_temporaria.ForEach(i => lista.Add(i));
+            List<Produto> lista_temporaria = await App.Db.GetAll();
+
+            lista_temporaria.ForEach(i => lista.Add(i));
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Ocorreu um erro!", "Erro apresentado: " + ex.Message, "Ok");
+        }
     }
 
     // <----------------------- Eventos de clique ------------------------->
