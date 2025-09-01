@@ -4,6 +4,12 @@
              x:Class="MauiAppCarrinhoDeCompras.Views.EditarProduto"
              Title="{Binding Descricao}"
              NavigationPage.HasNavigationBar="True">
+
+    <ContentPage.Background>
+        <LinearGradientBrush>
+            <GradientStop Color="#FF5733" Offset="0.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
     
     <ContentPage.ToolbarItems>
             <ToolbarItem x:Name="btn_salvar" Text="Salvar" Clicked="btn_salvar_Clicked"/>

@@ -10,5 +10,15 @@
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
+        <Style TargetType="ContentPage">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush>
+                        <GradientStop Color="#7D5FBF" Offset="0.2"/>
+                        <GradientStop Color="#AD5FBF" Offset="0.8"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Application.Resources>
 </Application>
