@@ -25,7 +25,7 @@ namespace MauiAppCarrinhoDeCompras.Models
         { get => _quantidade;
             set 
             {
-                if(value == null || value <= 0)   // se o valor for nulo ou menor ou igual a zero, dispara uma exceção
+                if(value == null || value < 0)   // se o valor for nulo ou menor ou igual a zero, dispara uma exceção
                 {
                     throw new Exception("A quantidade deve ser maior que zero!");
                 }
@@ -37,7 +37,7 @@ namespace MauiAppCarrinhoDeCompras.Models
         { get => _preco;
             set 
             {
-                if(value == null || value <= 0)   // se o valor for nulo ou menor ou igual a zero, dispara uma exceção
+                if(value == null || value < 0)   // se o valor for nulo ou menor ou igual a zero, dispara uma exceção
                 {
                     throw new Exception("O preço deve ser maior que zero!");
                 }

@@ -10,7 +10,7 @@
         <ToolbarItem Text="Adicionar" Clicked="ToolbarItem_Adicionar_Clicked_1"/>
     </ContentPage.ToolbarItems>
     
-    <VerticalStackLayout Margin="10">
+    <Grid Margin="10" RowDefinitions="Auto, *">
         
         <SearchBar 
             x:Name="txt_search" 
@@ -19,7 +19,10 @@
 
         <ListView x:Name="lst_produtos"
                   ItemSelected="lst_produtos_ItemSelected"
-                  Margin="0, 20">
+                  IsPullToRefreshEnabled="True"
+                  Refreshing="lst_produtos_Refreshing"
+                  Margin="0, 20"
+                  Grid.Row="1">
             <ListView.Header>
                 
                 <Border BackgroundColor="DarkGray">
@@ -115,7 +118,7 @@
                             <BoxView Grid.Column="2" Grid.Row="1" HeightRequest="1" BackgroundColor="DarkGray" HorizontalOptions="Fill" />
                             
                             <Label 
-                                Text="{Binding Preco, StringFormat='{}{0:C}'}"
+                                Text="{Binding Preco, StringFormat='{}{0:c}'}"
                                 Grid.Column="2"
                                 Grid.Row="0"
                                 HorizontalTextAlignment="Center"
@@ -135,7 +138,7 @@
                             <BoxView Grid.Column="4" Grid.Row="1" HeightRequest="1" BackgroundColor="DarkGray" HorizontalOptions="Fill" />
                             
                             <Label
-                                Text="{Binding Total, StringFormat='{}{0:C}'}"
+                                Text="{Binding Total, StringFormat='{}{0:c}'}"
                                 Grid.Column="4"
                                 Grid.Row="0"
                                 HorizontalTextAlignment="Center"
@@ -150,5 +153,5 @@
             </ListView.ItemTemplate>
         </ListView>
         
-    </VerticalStackLayout>
+    </Grid>
 </ContentPage>

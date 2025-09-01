@@ -23,7 +23,6 @@ public partial class NovoProduto : ContentPage
 
             await App.Db.Insert(produto);
             await DisplayAlert("Produto Registrado", "O produto foi registrado em seu carrinho de compras!", "Ok");
-
             await Navigation.PopAsync();
         }
         catch (Exception ex)

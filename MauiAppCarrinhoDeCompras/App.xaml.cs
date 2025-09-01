@@ -1,4 +1,5 @@
 ﻿using MauiAppCarrinhoDeCompras.Helpers;
+using System.Globalization;
 
 namespace MauiAppCarrinhoDeCompras
 {
@@ -31,8 +32,7 @@ namespace MauiAppCarrinhoDeCompras
             MainPage = new NavigationPage(new Views.ListaProduto())
             {
                 BarBackgroundColor = Colors.DarkGray,
-                BarTextColor = Colors.Black,
-                BindingContext = this
+                BarTextColor = Colors.Black
             };
         }
     }

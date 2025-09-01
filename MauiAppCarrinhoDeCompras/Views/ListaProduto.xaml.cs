@@ -68,13 +68,26 @@ public partial class ListaProduto : ContentPage
 
     private async void txt_search_TextChanged(object sender, TextChangedEventArgs e)
     {
-        string digitado = e.NewTextValue;                                  // Obtem o texto digitado no campo de busca
+        try 
+        {
+            string digitado = e.NewTextValue;                                  // Obtem o texto digitado no campo de busca
 
-        lista.Clear();                                                     // Limpa a lista atual para exibir os resultados da busca
+            lst_produtos.IsRefreshing = true;                                   // Inicia o estado de atualização da lista para indicar que uma busca está em andamento, ou seja, uma notificação visual para o usuário que indica o processo de busca
 
-        List<Produto> lista_temp = await App.Db.Search(digitado);          // Realiza a busca no banco de dados com o texto digitado
+            lista.Clear();                                                     // Limpa a lista atual para exibir os resultados da busca
 
-        lista_temp.ForEach(i => lista.Add(i));                             // Adiciona os produtos encontrados na lista visível
+            List<Produto> lista_temp = await App.Db.Search(digitado);          // Realiza a busca no banco de dados com o texto digitado
+
+            lista_temp.ForEach(i => lista.Add(i));                             // Adiciona os produtos encontrados na lista visível
+        }
+        catch (Exception ex) 
+        {
+            await DisplayAlert("Ocorreu um erro!", "Erro apresentado: " + ex.Message, "Ok");
+        }
+        finally 
+        {
+            lst_produtos.IsRefreshing = false;                                  // Encerra o estado de atualização da lista
+        }
     }
 
     private async void MenuItem_Remover_Clicked(object sender, EventArgs e)
@@ -114,6 +127,26 @@ public partial class ListaProduto : ContentPage
         catch (Exception ex)
         {
             DisplayAlert("Ocorreu um erro!", "Erro apresentado: " + ex.Message, "Ok");
+        }
+    }
+
+    private async void lst_produtos_Refreshing(object sender, EventArgs e)
+    {
+        try
+        {
+            lista.Clear();                                              // Limpa a lista para evitar duplicidade de itens ao retornar para a página
+
+            List<Produto> lista_temporaria = await App.Db.GetAll();
+
+            lista_temporaria.ForEach(i => lista.Add(i));
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Ocorreu um erro!", "Erro apresentado: " + ex.Message, "Ok");
+        }
+        finally
+        {
+            lst_produtos.IsRefreshing = false;                           // Encerra o estado de atualização da lista
         }
     }
 }

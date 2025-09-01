@@ -2,11 +2,11 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiAppCarrinhoDeCompras.Views.EditarProduto"
-             Title="{Binding Descricao}">
+             Title="{Binding Descricao}"
+             NavigationPage.HasNavigationBar="True">
+    
     <ContentPage.ToolbarItems>
-            <ToolbarItem 
-                x:Name="btn_salvar"
-                Text="Salvar" Clicked="btn_salvar_Clicked"/>
+            <ToolbarItem x:Name="btn_salvar" Text="Salvar" Clicked="btn_salvar_Clicked"/>
      </ContentPage.ToolbarItems>
 
     <VerticalStackLayout 
@@ -22,14 +22,14 @@
                     Text="Quantidade:"/>
                 <Entry
                     x:Name="txt_quantidade"
-                    Text="{Binding Quantidade}"
+                    Text="{Binding Quantidade, StringFormat=Empty'{}{0:c}'}"
                     Keyboard="Numeric"/>
 
                 <Label
                     Text="Preço:"/>
                 <Entry
                     x:Name="txt_preco"
-                    Text="{Binding Preco}"
+                    Text="{Binding Preco, StringFormat=Empty'{}{0:c}'}"
                     Keyboard="Numeric"/>
     
     </VerticalStackLayout>
