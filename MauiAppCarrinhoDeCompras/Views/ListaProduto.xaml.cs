@@ -1,12 +1,13 @@
 using MauiAppCarrinhoDeCompras.Models;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace MauiAppCarrinhoDeCompras.Views;
 
 public partial class ListaProduto : ContentPage
 {
-    ObservableCollection<Produto> lista = new ObservableCollection<Produto>();      // Cria uma coleção observável para armazenar os produtos e atualizar a interface automaticamente
+    ObservableCollection<Produto> lista = new ObservableCollection<Produto>();      // Cria uma coleção observável para armazenar os produtos e atualizar a interface automaticamente 
 
     // <----------------------- Construtor da classe ------------------------->
     public ListaProduto()
@@ -14,7 +15,8 @@ public partial class ListaProduto : ContentPage
 		InitializeComponent();
 
         lst_produtos.ItemsSource = lista;
-	}
+
+    }
 
     // <----------------------- Evento OnAppearing ------------------------->
     // Evento disparado quando a página aparece na tela, fazendo a carga inicial dos produtos através do banco de dados armazenado em nosso App
@@ -66,14 +68,39 @@ public partial class ListaProduto : ContentPage
         lista_temp.ForEach(i => lista.Add(i));                             // Adiciona os produtos encontrados na lista visível
     }
 
-    private void MenuItem_Remover_Clicked(object sender, EventArgs e)
+    private async void MenuItem_Remover_Clicked(object sender, EventArgs e)
     {
         try
         {
             MenuItem menuItem = (MenuItem)sender;                           // Obtem o MenuItem que disparou o evento de clique
             Produto produto_selecionado = (Produto)menuItem.BindingContext; // Obtem o produto selecionado através do contexto de ligação do MenuItem em nosso arquivo XAML
+
+            // Alerta de confirmação para remoção do produto
+            bool confirma = await DisplayAlert("Confirmação", $"Deseja remover o produto {produto_selecionado.Descricao}?", "Sim", "Não"); 
+
+            if (!confirma) return;                                          // Se o usuário não confirmar, sai do método
+
+            // Remoção do produto, caso o usuário confirme
             lista.Remove(produto_selecionado);                              // Remove o produto da lista visível na tela
-            App.Db.Delete(produto_selecionado.Id);                          // Remove o produto do banco de dados, utilizando o Id do produto selecionado
+            await App.Db.Delete(produto_selecionado.Id);                          // Remove o produto do banco de dados, utilizando o Id do produto selecionado
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Ocorreu um erro!", "Erro apresentado: " + ex.Message, "Ok");
+        }
+    }
+
+    // Evento disparado quando um item da lista é selecionado (redicionará para a página de edição do produto)
+    private void lst_produtos_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+    {
+        try
+        {
+            Produto produto_selecionado = (Produto)e.SelectedItem;          // Obtem o produto selecionado na lista
+
+            Navigation.PushAsync(new Views.EditarProduto()
+                {
+                    BindingContext = produto_selecionado                     // Passa o produto selecionado como contexto de ligação para a página de edição
+                });
         }
         catch (Exception ex)
         {
