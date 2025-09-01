@@ -31,8 +31,8 @@ namespace MauiAppCarrinhoDeCompras
 
             MainPage = new NavigationPage(new Views.ListaProduto())
             {
-                BarBackgroundColor = Colors.DarkGray,
-                BarTextColor = Colors.Black
+                BarBackgroundColor = Color.FromArgb("#2B0B98"),
+                BarTextColor = Colors.White
             };
         }
     }

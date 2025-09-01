@@ -5,33 +5,43 @@
              Title="Carrinho"
              NavigationPage.HasNavigationBar="True">
 
+    <ContentPage.Background>
+        <LinearGradientBrush>
+            <GradientStop Color="#7D5FBF" Offset="0.0"/>
+            <GradientStop Color="#AD5FBF" Offset="0.7"/>
+        </LinearGradientBrush>
+    </ContentPage.Background>
+    
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Somar" Clicked="ToolbarItem_Somar_Clicked"/>
         <ToolbarItem Text="Adicionar" Clicked="ToolbarItem_Adicionar_Clicked_1"/>
     </ContentPage.ToolbarItems>
     
-    <Grid Margin="10" RowDefinitions="Auto, *">
+    <Grid RowDefinitions="Auto, *">
         
         <SearchBar 
             x:Name="txt_search" 
             Placeholder="Busca de produto"
-            TextChanged="txt_search_TextChanged"/>
+            TextChanged="txt_search_TextChanged"
+            PlaceholderColor="White"
+            Margin="0, 20, 10, 0"
+            />
 
         <ListView x:Name="lst_produtos"
                   ItemSelected="lst_produtos_ItemSelected"
                   IsPullToRefreshEnabled="True"
                   Refreshing="lst_produtos_Refreshing"
-                  Margin="0, 20"
+                  Margin="10,20"
                   Grid.Row="1">
             <ListView.Header>
-                
-                <Border BackgroundColor="DarkGray">
+
+                <Border BackgroundColor="#1C009E">
                     
                     <Grid ColumnDefinitions="*, *, *, *, *"
-                          BackgroundColor="LightGray"
+                          BackgroundColor="#00329E"
                           RowDefinitions="Auto">
-                        
-                        <BoxView Grid.Column="0" WidthRequest="1" BackgroundColor="DarkGray" HorizontalOptions="End" />
+
+                        <BoxView Grid.Column="0" WidthRequest="2" BackgroundColor="#1C009E" HorizontalOptions="End" />
                         
                         <Label
                             Text="ID"
@@ -39,48 +49,54 @@
                             FontAttributes="Bold"
                             HorizontalTextAlignment="Center"
                             VerticalTextAlignment="Center"
-                            HeightRequest="40"/>
-                        
-                        <BoxView Grid.Column="1" WidthRequest="1" BackgroundColor="DarkGray" HorizontalOptions="End" />
+                            HeightRequest="40"
+                            TextColor="White"/>
+
+                        <BoxView Grid.Column="1" WidthRequest="2" BackgroundColor="#1C009E" HorizontalOptions="End" />
                         
                         <Label
                             Text="Descrição"
                             Grid.Column="1"
                             FontAttributes="Bold"
                             HorizontalTextAlignment="Center"
-                            VerticalTextAlignment="Center"/>
-                        
-                        <BoxView Grid.Column="2" WidthRequest="1" BackgroundColor="DarkGray" HorizontalOptions="End"  />
+                            VerticalTextAlignment="Center"
+                            TextColor="White"/>
+
+                        <BoxView Grid.Column="2" WidthRequest="2" BackgroundColor="#1C009E" HorizontalOptions="End"  />
                         
                         <Label
                             Text="Preço"
                             Grid.Column="2"
                             FontAttributes="Bold"
                             HorizontalTextAlignment="Center"
-                            VerticalTextAlignment="Center"/>
-                        
-                        <BoxView Grid.Column="3" WidthRequest="1" BackgroundColor="DarkGray" HorizontalOptions="End" />
+                            VerticalTextAlignment="Center"
+                            TextColor="White"/>
+
+                        <BoxView Grid.Column="3" WidthRequest="2" BackgroundColor="#1C009E" HorizontalOptions="End" />
                         
                         <Label
                             Text="Qtd"
                             Grid.Column="3"
                             FontAttributes="Bold"
                             HorizontalTextAlignment="Center"
-                            VerticalTextAlignment="Center"/>
-                        
-                        <BoxView Grid.Column="4" WidthRequest="1" BackgroundColor="DarkGray" HorizontalOptions="End" />
+                            VerticalTextAlignment="Center"
+                            TextColor="White"/>
+
+                        <BoxView Grid.Column="4" WidthRequest="2" BackgroundColor="#1C009E" HorizontalOptions="End" />
                         
                         <Label
                             Text="Total"
                             Grid.Column="4"
                             FontAttributes="Bold"
                             HorizontalTextAlignment="Center"
-                            VerticalTextAlignment="Center"/>
+                            VerticalTextAlignment="Center"
+                            TextColor="White"/>
                         
                     </Grid>
                     
                 </Border>
             </ListView.Header>
+            
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -90,63 +106,64 @@
                         </ViewCell.ContextActions>
 
                         <Grid ColumnDefinitions="*, *, *, *, *"
-                              Margin="1,0"
+                              Margin="2,0"
                               RowDefinitions="Auto,1">
-                            
-                            <BoxView Grid.Column="0" WidthRequest="1" HeightRequest="40" BackgroundColor="DarkGray" HorizontalOptions="Start" />
-                            <BoxView Grid.Column="0" WidthRequest="1" HeightRequest="40" BackgroundColor="DarkGray" HorizontalOptions="End" />
-                            <BoxView Grid.Column="0" Grid.Row="1" HeightRequest="1" BackgroundColor="DarkGray" HorizontalOptions="Fill" />
-                            
+
+                            <BoxView Grid.Column="0" WidthRequest="2" HeightRequest="42" BackgroundColor="White" HorizontalOptions="Start" />
+                            <BoxView Grid.Column="0" WidthRequest="2" HeightRequest="42" BackgroundColor="White" HorizontalOptions="End" />
+                            <BoxView Grid.Column="0" Grid.Row="1" HeightRequest="2" BackgroundColor="White" HorizontalOptions="Fill"/>
+
                             <Label 
+                                x:Name="id_template"
                                 Text="{Binding Id}"
                                 Grid.Column="0"
                                 Grid.Row="0"
                                 HorizontalTextAlignment="Center"
                                 VerticalTextAlignment="Center"/>
                             
-                            <BoxView Grid.Column="1" Grid.Row="0" WidthRequest="1" BackgroundColor="DarkGray" HorizontalOptions="End" />
-                            <BoxView Grid.Column="1" Grid.Row="1" HeightRequest="1" BackgroundColor="DarkGray" HorizontalOptions="Fill" />
+                            <BoxView Grid.Column="1" Grid.Row="0" WidthRequest="2" BackgroundColor="White" HorizontalOptions="End" />
+                            <BoxView Grid.Column="1" Grid.Row="1" HeightRequest="2" BackgroundColor="White" HorizontalOptions="Fill" />
                             
                             <Label 
+                                x:Name="descricao_template"
                                 Text="{Binding Descricao}"
                                 Grid.Column="1"
                                 Grid.Row="0"
                                 HorizontalTextAlignment="Center"
                                 VerticalTextAlignment="Center"/>
                             
-                            <BoxView Grid.Column="2" Grid.Row="0" WidthRequest="1" BackgroundColor="DarkGray" HorizontalOptions="End" />
-                            <BoxView Grid.Column="2" Grid.Row="1" HeightRequest="1" BackgroundColor="DarkGray" HorizontalOptions="Fill" />
+                            <BoxView Grid.Column="2" Grid.Row="0" WidthRequest="2" BackgroundColor="White" HorizontalOptions="End" />
+                            <BoxView Grid.Column="2" Grid.Row="1" HeightRequest="2" BackgroundColor="White" HorizontalOptions="Fill" />
                             
                             <Label 
+                                x:Name="preco_template"
                                 Text="{Binding Preco, StringFormat='{}{0:c}'}"
                                 Grid.Column="2"
                                 Grid.Row="0"
                                 HorizontalTextAlignment="Center"
                                 VerticalTextAlignment="Center"/>
                             
-                            <BoxView Grid.Column="3" Grid.Row="0" WidthRequest="1" BackgroundColor="DarkGray" HorizontalOptions="End" />
-                            <BoxView Grid.Column="3" Grid.Row="1" HeightRequest="1" BackgroundColor="DarkGray" HorizontalOptions="Fill" />
+                            <BoxView Grid.Column="3" Grid.Row="0" WidthRequest="2" BackgroundColor="White" HorizontalOptions="End" />
+                            <BoxView Grid.Column="3" Grid.Row="1" HeightRequest="2" BackgroundColor="White" HorizontalOptions="Fill" />
                             
                             <Label 
+                                x:Name="qtd_template"
                                 Text="{Binding Quantidade}"
                                 Grid.Column="3"
                                 Grid.Row="0"
                                 HorizontalTextAlignment="Center"
                                 VerticalTextAlignment="Center"/>
                             
-                            <BoxView Grid.Column="4" Grid.Row="0" WidthRequest="1" BackgroundColor="DarkGray" HorizontalOptions="End" />
-                            <BoxView Grid.Column="4" Grid.Row="1" HeightRequest="1" BackgroundColor="DarkGray" HorizontalOptions="Fill" />
-                            
+                            <BoxView Grid.Column="4" Grid.Row="0" WidthRequest="2" BackgroundColor="White" HorizontalOptions="End" />
+                            <BoxView Grid.Column="4" Grid.Row="1" HeightRequest="2" BackgroundColor="White" HorizontalOptions="Fill" />
+
                             <Label
+                                x:Name="total_template"
                                 Text="{Binding Total, StringFormat='{}{0:c}'}"
                                 Grid.Column="4"
                                 Grid.Row="0"
                                 HorizontalTextAlignment="Center"
                                 VerticalTextAlignment="Center"/>
-
-                            
-                            
-                            
                         </Grid>
                     </ViewCell>
                 </DataTemplate>

@@ -7,10 +7,11 @@
 
     <ContentPage.Background>
         <LinearGradientBrush>
-            <GradientStop Color="#FF5733" Offset="0.0" />
+            <GradientStop Color="#7D5FBF" Offset="0.0"/>
+            <GradientStop Color="#AD5FBF" Offset="0.7"/>
         </LinearGradientBrush>
     </ContentPage.Background>
-    
+
     <ContentPage.ToolbarItems>
             <ToolbarItem x:Name="btn_salvar" Text="Salvar" Clicked="btn_salvar_Clicked"/>
      </ContentPage.ToolbarItems>
