@@ -59,3 +59,38 @@ basta selecionar a plataforma desejada na IDE e executar o projeto.
 
 Para isso, será necessário ter o emulador da plataforma desejada instalado e configurado em sua máquina, então peço para que você busque saber
 como fazer o mesmo em sua IDE, pois não consegui encontrar um video base, para que pudesse linkar aqui, mas caso no futuro eu encontre, posso deixá-lo aqui.
+
+### Algumas imagens do projeto
+
+##### Página principal - Lista de produtos
+
+<img src="MauiAppCarrinhoDeCompras/Resources/Images/tela_inicial.png" alt="Imagem da tela inicial de nosso aplicativo, contendo o layout do carrinho de compras">
+
+ Como podemos ver acima, temos a tela inicial de nossa aplicação, onde o usuário poderá visualizar os produtos do carrinho, além de acesso aos
+botões de adicionar um novo produto, ou somar o valor total do carrinho.
+
+ Outras features interessantes são:
+
+ - Clicar em um produto para editá-lo
+
+ - Clicar e segurar em um produto para excluí-lo
+
+ - SearcheBar para buscar um produto específico
+	
+##### Página de adicionar novo produto
+
+<img src="MauiAppCarrinhoDeCompras/Resources/Images/tela_novo_produto.png" alt="Imagem da tela de adicionar um novo produto ao carrinho de compras">
+
+ Na imagem acima, temos a tela de adicionar um novo produto ao carrinho, onde o usuário poderá inserir o nome e o valor do produto, e salvar o mesmo.
+
+ ##### Página de editar produto
+
+ <img src="MauiAppCarrinhoDeCompras/Resources/Images/tela_edicao_produto.png" alt="Imagem da tela de editar um produto do carrinho de compras">
+
+ Na imagem acima, temos a tela de editar um produto do carrinho, na qual é acessada através do clique em um produto do carrinho.
+
+ ##### Tela de remoção de produto
+
+ <img src="MauiAppCarrinhoDeCompras/Resources/Images/tela_remover.png" alt="Imagem do popup exibido ao clicar no botão somar">
+
+ Como podemos ver, após segurarmos um item em nosso carrinho, a opção de remoção do item é exibida.
